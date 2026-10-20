@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAGNECT | Tráfego Pago, Sistemas, Automação & SEO para IA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat, Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        magnect: {
+                            950: '#05101a',
+                            900: '#091b29',
+                            800: '#122e42',
+                            700: '#1e4556',
+                            600: '#2c5d72',
+                            teal: '#2b839e',
+                            mist: '#8ab4c1',
+                            cyan: '#00d5f0',
+                            glow: '#dff9ff',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        brand: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'cyan-glow': '0 0 22px rgba(0, 213, 240, 0.35)',
+                        'cyan-glow-lg': '0 0 38px rgba(0, 213, 240, 0.55)',
+                        'petrol-card': '0 10px 35px -5px rgba(5, 16, 26, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #061420;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Malha de fundo sutil */
+        .bg-tech-grid {
+            background-size: 44px 44px;
+            background-image: 
+                linear-gradient(to right, rgba(138, 180, 193, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(138, 180, 193, 0.05) 1px, transparent 1px);
+        }
+
+        .glass-card {
+            background: rgba(18, 46, 66, 0.65);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(138, 180, 193, 0.22);
+        }
+
+        .glass-nav {
+            background: rgba(6, 20, 32, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 213, 240, 0.18);
+        }
+
+        /* Levitação magnética contínua do nêutron central */
+        @keyframes neutron-magnetic-motion {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            25% {
+                transform: translate(-2px, -3px) scale(1.03);
+            }
+            50% {
+                transform: translate(2px, -1px) scale(0.98);
+            }
+            75% {
+                transform: translate(2px, 2px) scale(1.02);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-neutron-live {
+            animation: neutron-magnetic-motion 5s ease-in-out infinite;
+            transform-origin: 200px 200px;
+        }
+
+        /* Hover dinâmico nos cards do dashboard */
+        .dash-card-hover {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dash-card-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(0, 213, 240, 0.7);
+            box-shadow: 0 12px 28px -6px rgba(0, 213, 240, 0.35);
+        }
+
+        /* Efeito interativo nas barras do gráfico */
+        .chart-bar-item {
+            transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.25s ease, background-color 0.25s ease, filter 0.25s ease;
+            transform-origin: bottom;
+        }
+        .chart-bar-item:hover {
+            transform: scaleY(1.08) scaleX(1.1);
+            filter: brightness(1.3) drop-shadow(0 0 12px rgba(0, 213, 240, 0.9));
+            cursor: pointer;
+        }
+
+        /* Custom Range Slider */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: rgba(30, 69, 86, 0.9);
+            height: 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 213, 240, 0.35);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
+            background: #00d5f0;
+            cursor: pointer;
+            box-shadow: 0 0 14px #00d5f0;
+            border: 2px solid #ffffff;
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        /* Scrollbar suave sem quebras bruscas */
+        .custom-scroll::-webkit-scrollbar {
+            height: 4px;
+            width: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: rgba(9, 27, 41, 0.5);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 213, 240, 0.4);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="bg-tech-grid antialiased selection:bg-magnect-cyan selection:text-magnect-950">
+
+    <!-- Definições Globais de SVG -->
+    <svg width="0" height="0" class="absolute pointer-events-none">
+        <defs>
+            <radialGradient id="sphere3D" cx="35%" cy="30%" r="65%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="28%" stop-color="#4ce8ff" />
+                <stop offset="68%" stop-color="#009bb5" />
+                <stop offset="100%" stop-color="#053849" />
+            </radialGradient>
+
+            <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Luzes de fundo atmosféricas -->
+    <div class="fixed top-0 left-1/4 w-[480px] h-[480px] bg-magnect-teal/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/4 right-10 w-[420px] h-[420px] bg-magnect-cyan/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP (21 98405-8626) -->
+    <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20MAGNECT%20e%20gostaria%20de%20um%20diagn%C3%B3stico%20para%20o%20meu%20neg%C3%B3cio." 
+       target="_blank" rel="noopener noreferrer"
+       class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center gap-2.5 sm:gap-3 bg-[#25D366] hover:bg-[#1ebe5d] text-slate-950 font-bold px-3.5 py-3 sm:px-4 sm:py-3.5 rounded-full shadow-[0_0_25px_rgba(37,211,102,0.5)] hover:scale-105 transition-all duration-300 group">
+        <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+        </span>
+        <i class="ph-fill ph-whatsapp-logo text-xl sm:text-2xl"></i>
+        <span class="text-xs sm:text-sm pr-1 hidden md:inline">WhatsApp: (21) 98405-8626</span>
+    </a>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#inicio" class="flex items-center gap-3.5 group focus:outline-none">
+                <div class="w-11 h-11 relative flex items-center justify-center">
+                    <svg viewBox="0 0 120 120" class="w-full h-full overflow-visible">
+                        <defs>
+                            <path id="navOrbitPath" d="M 60,10 A 21,50 0 1,0 60,110 A 21,50 0 1,0 60,10 Z" />
+                        </defs>
+                        <g transform="rotate(-8 60 60)">
+                            <use href="#navOrbitPath" fill="none" stroke="#8ab4c1" stroke-width="2.2" />
+                            <circle r="4.5" fill="url(#sphere3D)" filter="url(#softGlow)">
+                                <animateMotion dur="5s" repeatCount="indefinite" begin="0s">
+                                    <mpath href="#navOrbitPath" />
+                                </animateMotion>
+                            </circle>
+                        </g>
+                        <g transform="rotate(52 60 60)">
+                            <use href="#navOrbitPath" fill="none" stroke="#8ab4c1" stroke-width="2.2" />
+                            <circle r="4.5" fill="url(#sphere3D)" filter="url(#softGlow)">
+                                <animateMotion dur="5s" repeatCount="indefinite" begin="-1.6s">
+                                    <mpath href="#navOrbitPath" />
+                                </animateMotion>
+                            </circle>
+                        </g>
+                        <g transform="rotate(-68 60 60)">
+                            <use href="#navOrbitPath" fill="none" stroke="#8ab4c1" stroke-width="2.2" />
+                            <circle r="4.5" fill="url(#sphere3D)" filter="url(#softGlow)">
+                                <animateMotion dur="5s" repeatCount="indefinite" begin="-3.3s">
+                                    <mpath href="#navOrbitPath" />
+                                </animateMotion>
+                            </circle>
+                        </g>
+                        <circle cx="60" cy="60" r="11" fill="url(#sphere3D)" filter="url(#softGlow)" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-brand font-black text-2xl tracking-[0.06em] text-white group-hover:text-magnect-cyan transition-colors">MAGNECT</span>
+                    <span class="text-[9px] uppercase tracking-[0.22em] text-magnect-mist font-semibold -mt-1">Tecnologia & Marketing</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+                <a href="#inicio" class="hover:text-magnect-cyan transition-colors py-2">Início</a>
+                <a href="#servicos" class="hover:text-magnect-cyan transition-colors py-2">Serviços</a>
+                <a href="#orbit-ai" class="text-magnect-cyan font-semibold hover:text-white transition-colors py-2 flex items-center gap-1.5">
+                    <i class="ph-fill ph-sparkle"></i>
+                    <span>Produto Orbit AI™</span>
+                </a>
+                <a href="#seo-ia" class="hover:text-magnect-cyan transition-colors py-2">Busca por IA & SEO</a>
+                <a href="#dashboard" class="hover:text-magnect-cyan transition-colors py-2">Command Center</a>
+                <a href="#simulador" class="hover:text-magnect-cyan transition-colors py-2">Simulador ROI</a>
+            </nav>
+
+            <!-- WhatsApp Direct CTA -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20MAGNECT%20sobre%20Tr%C3%A1fego%2C%20Sistemas%20e%20Marketing." 
+                   target="_blank" rel="noopener noreferrer"
+                   class="bg-magnect-cyan hover:bg-white text-magnect-950 font-bold px-5 py-2.5 rounded-xl shadow-cyan-glow hover:shadow-cyan-glow-lg transition-all duration-300 flex items-center gap-2 text-sm">
+                    <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                    <span>(21) 98405-8626</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-slate-200 hover:text-magnect-cyan p-2 rounded-lg focus:outline-none" aria-label="Abrir Menu">
+                <i class="ph ph-list text-3xl" id="mobile-menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden glass-card border-t border-magnect-cyan/20 px-6 py-5 space-y-3">
+            <a href="#inicio" class="block text-base font-medium text-slate-200 hover:text-magnect-cyan py-1 mobile-link">Início</a>
+            <a href="#servicos" class="block text-base font-medium text-slate-200 hover:text-magnect-cyan py-1 mobile-link">Serviços</a>
+            <a href="#orbit-ai" class="block text-base font-bold text-magnect-cyan py-1 mobile-link">★ Produto MAGNECT Orbit AI™</a>
+            <a href="#seo-ia" class="block text-base font-medium text-slate-200 hover:text-magnect-cyan py-1 mobile-link">SEO & Busca por IA (GEO)</a>
+            <a href="#dashboard" class="block text-base font-medium text-slate-200 hover:text-magnect-cyan py-1 mobile-link">Dashboard Live</a>
+            <a href="#simulador" class="block text-base font-medium text-slate-200 hover:text-magnect-cyan py-1 mobile-link">Simulador ROI</a>
+            <div class="pt-3">
+                <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20MAGNECT%20e%20quero%20solicitar%20uma%20proposta." 
+                   target="_blank" rel="noopener noreferrer"
+                   class="w-full bg-magnect-cyan text-magnect-950 font-bold py-3 rounded-xl shadow-cyan-glow flex items-center justify-center gap-2 mobile-link">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                    <span>Chamar no WhatsApp (21) 98405-8626</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-magnect-700/80 border border-magnect-mist/40 text-magnect-glow text-xs font-semibold tracking-wide uppercase">
+                        <span class="w-2 h-2 rounded-full bg-magnect-cyan animate-ping"></span>
+                        <span>Para Negócios Online & Estabelecimentos Físicos</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+                        Tráfego Pago, Sistemas, Automação & <span class="text-transparent bg-clip-text bg-gradient-to-r from-magnect-cyan via-magnect-glow to-magnect-mist">Busca por IA.</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        A <strong class="text-white font-brand">MAGNECT</strong> conecta engenharia de software, automação inteligente e estratégias de marketing para colocar sua empresa — física ou digital — no topo do Google, das Redes Sociais e das recomendações de Inteligência Artificial.
+                    </p>
+
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20diagn%C3%B3stico%20estrat%C3%A9gico%20com%20a%20MAGNECT." 
+                           target="_blank" rel="noopener noreferrer"
+                           class="w-full sm:w-auto px-7 py-4 bg-magnect-cyan hover:bg-white text-magnect-950 font-bold rounded-xl shadow-cyan-glow hover:shadow-cyan-glow-lg transition-all duration-300 flex items-center justify-center gap-2.5 text-base">
+                            <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                            <span>Falar no WhatsApp Agora</span>
+                        </a>
+                        <a href="#orbit-ai" class="w-full sm:w-auto px-7 py-4 glass-card hover:border-magnect-cyan text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2.5 text-base">
+                            <i class="ph-duotone ph-planet text-magnect-cyan text-xl"></i>
+                            <span>Conhecer o MAGNECT Orbit AI™</span>
+                        </a>
+                    </div>
+
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-magnect-700/60 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-magnect-cyan">360°</p>
+                            <p class="text-xs text-magnect-mist mt-0.5">Físico & E-commerce</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-white">SEO + IA</p>
+                            <p class="text-xs text-magnect-mist mt-0.5">ChatGPT & Google</p>
+                        </div>
+                        <div>
+                            <p class="font-display text-2xl sm:text-3xl font-bold text-magnect-cyan">24/7</p>
+                            <p class="text-xs text-magnect-mist mt-0.5">Sistemas & Automação</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Logo Pura com Movimento Misto e Halo Dinâmico -->
+                <div class="lg:col-span-5 relative flex flex-col items-center justify-center">
+                    <div class="relative w-full flex flex-col items-center justify-center select-none py-4">
+                        <div class="relative w-72 h-72 sm:w-80 sm:h-80 flex items-center justify-center">
+                            <svg viewBox="0 0 400 400" class="w-full h-full overflow-visible">
+                                <defs>
+                                    <path id="coreOrbitPath" d="M 200,34 A 66,166 0 1,0 200,366 A 66,166 0 1,0 200,34 Z" />
+                                    <path id="coreOrbitPathRev" d="M 200,34 A 66,166 0 1,1 200,366 A 66,166 0 1,1 200,34 Z" />
+
+                                    <radialGradient id="dynamicHalo" cx="50%" cy="50%" r="50%">
+                                        <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                                        <stop offset="25%" stop-color="#a5f3fc" stop-opacity="0.9" />
+                                        <stop offset="60%" stop-color="#00d5f0" stop-opacity="0.55" />
+                                        <stop offset="100%" stop-color="#00d5f0" stop-opacity="0" />
+                                    </radialGradient>
+                                </defs>
+
+                                <!-- ÓRBITA 1: Quase Vertical (-6°) -->
+                                <g transform="rotate(-6 200 200)">
+                                    <path d="M 200,24 A 75,176 0 1,0 200,376 A 63,162 0 1,1 200,24 Z" fill="#00b8d4" opacity="0.85" />
+                                    <path d="M 200,376 A 75,176 0 1,0 200,24 A 65,165 0 1,1 200,376 Z" fill="#1e4556" opacity="0.9" />
+                                    <use href="#coreOrbitPath" fill="none" stroke="#00d5f0" stroke-width="2.2" stroke-opacity="0.6" />
+
+                                    <g>
+                                        <animateMotion dur="6s" repeatCount="indefinite">
+                                            <mpath href="#coreOrbitPath" />
+                                        </animateMotion>
+                                        <circle r="22" fill="url(#dynamicHalo)">
+                                            <animate attributeName="r" values="18;44;18;44;18" dur="6s" repeatCount="indefinite" />
+                                            <animate attributeName="opacity" values="0.35;1;0.35;1;0.35" dur="6s" repeatCount="indefinite" />
+                                        </circle>
+                                        <circle r="14" fill="url(#sphere3D)" stroke="#06222f" stroke-width="1.8">
+                                            <animate attributeName="r" values="12;16;12;16;12" dur="6s" repeatCount="indefinite" />
+                                        </circle>
+                                        <ellipse cx="-4" cy="-4" rx="4" ry="2.2" fill="#ffffff" opacity="0.85" transform="rotate(-30 -4 -4)" />
+                                    </g>
+                                </g>
+
+                                <!-- ÓRBITA 2: Inclinada (+54°) - Sentido Anti-horário -->
+                                <g transform="rotate(54 200 200)">
+                                    <path d="M 200,24 A 75,176 0 1,0 200,376 A 63,162 0 1,1 200,24 Z" fill="#00b8d4" opacity="0.85" />
+                                    <path d="M 200,376 A 75,176 0 1,0 200,24 A 65,165 0 1,1 200,376 Z" fill="#1e4556" opacity="0.9" />
+                                    <use href="#coreOrbitPath" fill="none" stroke="#00d5f0" stroke-width="2.2" stroke-opacity="0.6" />
+
+                                    <g>
+                                        <animateMotion dur="5.2s" repeatCount="indefinite" begin="-1.8s">
+                                            <mpath href="#coreOrbitPathRev" />
+                                        </animateMotion>
+                                        <circle r="22" fill="url(#dynamicHalo)">
+                                            <animate attributeName="r" values="18;44;18;44;18" dur="5.2s" repeatCount="indefinite" begin="-1.8s" />
+                                            <animate attributeName="opacity" values="0.35;1;0.35;1;0.35" dur="5.2s" repeatCount="indefinite" begin="-1.8s" />
+                                        </circle>
+                                        <circle r="14" fill="url(#sphere3D)" stroke="#06222f" stroke-width="1.8">
+                                            <animate attributeName="r" values="12;16;12;16;12" dur="5.2s" repeatCount="indefinite" begin="-1.8s" />
+                                        </circle>
+                                        <ellipse cx="-4" cy="-4" rx="4" ry="2.2" fill="#ffffff" opacity="0.85" transform="rotate(-30 -4 -4)" />
+                                    </g>
+                                </g>
+
+                                <!-- ÓRBITA 3: Inclinada (-66°) -->
+                                <g transform="rotate(-66 200 200)">
+                                    <path d="M 200,24 A 75,176 0 1,0 200,376 A 63,162 0 1,1 200,24 Z" fill="#00b8d4" opacity="0.85" />
+                                    <path d="M 200,376 A 75,176 0 1,0 200,24 A 65,165 0 1,1 200,376 Z" fill="#1e4556" opacity="0.9" />
+                                    <use href="#coreOrbitPath" fill="none" stroke="#00d5f0" stroke-width="2.2" stroke-opacity="0.6" />
+
+                                    <g>
+                                        <animateMotion dur="6.8s" repeatCount="indefinite" begin="-3.4s">
+                                            <mpath href="#coreOrbitPath" />
+                                        </animateMotion>
+                                        <circle r="22" fill="url(#dynamicHalo)">
+                                            <animate attributeName="r" values="18;44;18;44;18" dur="6.8s" repeatCount="indefinite" begin="-3.4s" />
+                                            <animate attributeName="opacity" values="0.35;1;0.35;1;0.35" dur="6.8s" repeatCount="indefinite" begin="-3.4s" />
+                                        </circle>
+                                        <circle r="14" fill="url(#sphere3D)" stroke="#06222f" stroke-width="1.8">
+                                            <animate attributeName="r" values="12;16;12;16;12" dur="6.8s" repeatCount="indefinite" begin="-3.4s" />
+                                        </circle>
+                                        <ellipse cx="-4" cy="-4" rx="4" ry="2.2" fill="#ffffff" opacity="0.85" transform="rotate(-30 -4 -4)" />
+                                    </g>
+                                </g>
+
+                                <!-- NÊUTRON CENTRAL EM LEVITAÇÃO MAGNÉTICA -->
+                                <g class="animate-neutron-live">
+                                    <circle cx="200" cy="200" r="54" fill="url(#dynamicHalo)">
+                                        <animate attributeName="r" values="48;58;48" dur="3s" repeatCount="indefinite" />
+                                        <animate attributeName="opacity" values="0.45;0.8;0.45" dur="3s" repeatCount="indefinite" />
+                                    </circle>
+                                    <circle cx="200" cy="200" r="43" fill="url(#sphere3D)" stroke="#1e4556" stroke-width="3" />
+                                    <ellipse cx="186" cy="183" rx="15" ry="8.5" fill="#ffffff" opacity="0.55" transform="rotate(-25 186 183)">
+                                        <animate attributeName="opacity" values="0.4;0.75;0.4" dur="2.5s" repeatCount="indefinite" />
+                                    </ellipse>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div class="text-center mt-3 z-10 flex flex-col items-center">
+                            <h2 class="font-brand font-black text-4xl sm:text-5xl tracking-[0.16em] text-white drop-shadow-[0_4px_18px_rgba(0,213,240,0.45)]">
+                                MAGNECT
+                            </h2>
+                            <p class="text-xs uppercase tracking-[0.24em] text-magnect-cyan font-bold mt-1.5">
+                                Sistemas • Tráfego • Automação • IA
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE SERVIÇOS -->
+    <section id="servicos" class="py-20 bg-magnect-950/75 border-y border-magnect-700/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-magnect-cyan text-xs font-bold uppercase tracking-[0.2em]">Ecossistema Completo de Soluções</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Tecnologia & Marketing para Negócios Online e Físicos</h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Seja você dono de uma loja física, clínica, escritório local ou de um e-commerce/infoproduto digital, nós criamos a estrutura que atrai clientes todos os dias e automatiza suas vendas.
+                </p>
+            </div>
+
+            <!-- Filtros de Serviços -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+                <button onclick="filterServices('all')" id="filter-all" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-magnect-cyan text-magnect-950 shadow-cyan-glow">
+                    Todos os Pilares (4)
+                </button>
+                <button onclick="filterServices('trafego')" id="filter-trafego" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all glass-card text-slate-200 hover:text-white">
+                    Tráfego Pago (Local & Online)
+                </button>
+                <button onclick="filterServices('sistemas')" id="filter-sistemas" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all glass-card text-slate-200 hover:text-white">
+                    Sistemas, Softwares & Automação
+                </button>
+                <button onclick="filterServices('seo-ia')" id="filter-seo-ia" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all glass-card text-slate-200 hover:text-white">
+                    SEO & Busca por IA (GEO)
+                </button>
+                <button onclick="filterServices('consultoria')" id="filter-consultoria" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all glass-card text-slate-200 hover:text-white">
+                    Consultoria Estratégica
+                </button>
+            </div>
+
+            <!-- Grid de Cards de Serviços -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="services-grid">
+                
+                <!-- Card 1: Tráfego Pago -->
+                <div data-category="trafego" class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-magnect-cyan transition-all duration-300 group relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-magnect-700 border border-magnect-cyan/40 flex items-center justify-center text-magnect-cyan mb-5 shadow-cyan-glow">
+                            <i class="ph-duotone ph-crosshair text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-magnect-cyan bg-magnect-cyan/10 px-2.5 py-1 rounded-md">Negócios Físicos & Online</span>
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-2.5">Tráfego Pago de Alta Conversão</h3>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+                            Anúncios inteligentes que levam clientes até a porta do seu estabelecimento físico ou geram vendas diárias no seu site e WhatsApp.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Meta Ads & TikTok Ads:</strong> Campanhas geolocalizadas e escala nacional.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Google Ads & Maps:</strong> Topo das buscas com intenção de compra.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>API de Conversões:</strong> Rastreamento preciso do ROI.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Tenho%20interesse%20em%20Gest%C3%A3o%20de%20Tr%C3%A1fego%20Pago%20com%20a%20MAGNECT." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full py-3 px-4 rounded-xl bg-magnect-700 hover:bg-magnect-cyan text-white hover:text-magnect-950 font-bold text-xs transition-all flex items-center justify-center gap-2 border border-magnect-cyan/30">
+                        <i class="ph-fill ph-whatsapp-logo text-base"></i>
+                        <span>Escalar Tráfego no WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Card 2: Sistemas & Automação -->
+                <div data-category="sistemas" class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-magnect-cyan transition-all duration-300 group relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-magnect-700 border border-magnect-cyan/40 flex items-center justify-center text-magnect-cyan mb-5 shadow-cyan-glow">
+                            <i class="ph-duotone ph-terminal-window text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-magnect-cyan bg-magnect-cyan/10 px-2.5 py-1 rounded-md">Engenharia & Bots</span>
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-2.5">Sistemas Web, Softwares & Automação</h3>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+                            Desenvolvemos sistemas sob medida e automações que eliminam tarefas manuais, atendem clientes em segundos e organizam sua operação.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Automação WhatsApp & IA:</strong> Triagem, agendamento e vendas 24h.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Sistemas de Internet & SaaS:</strong> CRMs, painéis e portais corporativos.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Landing Pages Rápidas:</strong> Projetadas para conversão máxima.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Quero%20desenvolver%20um%20Sistema%2C%20Site%20ou%20Automa%C3%A7%C3%A3o%20com%20a%20MAGNECT." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full py-3 px-4 rounded-xl bg-magnect-700 hover:bg-magnect-cyan text-white hover:text-magnect-950 font-bold text-xs transition-all flex items-center justify-center gap-2 border border-magnect-cyan/30">
+                        <i class="ph-fill ph-whatsapp-logo text-base"></i>
+                        <span>Orçar Sistema / Automação</span>
+                    </a>
+                </div>
+
+                <!-- Card 3: SEO & IA -->
+                <div data-category="seo-ia" class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between border-magnect-cyan/50 hover:border-magnect-cyan transition-all duration-300 group relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-magnect-700 border border-magnect-cyan flex items-center justify-center text-magnect-cyan mb-5 shadow-cyan-glow">
+                            <i class="ph-duotone ph-robot text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-magnect-950 bg-magnect-cyan px-2.5 py-1 rounded-md">Tendência Global</span>
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-2.5">SEO & Buscas por IA (GEO)</h3>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+                            Clientes perguntam ao ChatGPT, Gemini e Google IA qual a melhor empresa. Estruturamos sua marca para ser a resposta nº 1.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>GEO (Generative Engine Optimization):</strong> Schema.org e leitura LLM.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>SEO Local & Google Maps:</strong> Destaque na sua região e cidade.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Autoridade Semântica:</strong> Citações institucionais validadas.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Quero%20colocar%20minha%20empresa%20nas%20buscas%20por%20IA%20(ChatGPT%2FGemini)%20e%20no%20topo%20do%20Google%20(SEO)." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full py-3 px-4 rounded-xl bg-magnect-cyan hover:bg-white text-magnect-950 font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-cyan-glow">
+                        <i class="ph-fill ph-whatsapp-logo text-base"></i>
+                        <span>Dominar Google & IAs</span>
+                    </a>
+                </div>
+
+                <!-- Card 4: Consultoria Estratégica -->
+                <div data-category="consultoria" class="service-card glass-card rounded-2xl p-6 flex flex-col justify-between hover:border-magnect-cyan transition-all duration-300 group relative overflow-hidden">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-magnect-700 border border-magnect-cyan/40 flex items-center justify-center text-magnect-cyan mb-5 shadow-cyan-glow">
+                            <i class="ph-duotone ph-strategy text-2xl"></i>
+                        </div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-magnect-cyan bg-magnect-cyan/10 px-2.5 py-1 rounded-md">Direção & Escala</span>
+                        <h3 class="font-display text-xl font-bold text-white mt-3 mb-2.5">Consultoria de Negócios & Vendas</h3>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
+                            Diagnóstico comercial e plano de ação estruturado para destravar vendas, treinar equipe e multiplicar margem de lucro.
+                        </p>
+                        <ul class="space-y-2 text-xs text-slate-300 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Engenharia de Funil:</strong> Do anúncio ao fechamento do caixa.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Playbook de Atendimento:</strong> Scripts de conversão no WhatsApp.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check-circle text-magnect-cyan text-sm shrink-0 mt-0.5"></i>
+                                <span><strong>Métricas CAC & LTV:</strong> Decisões guiadas por dados.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Consultoria%20Estrat%C3%A9gica%20de%20Marketing%20e%20Neg%C3%B3cios%20da%20MAGNECT." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full py-3 px-4 rounded-xl bg-magnect-700 hover:bg-magnect-cyan text-white hover:text-magnect-950 font-bold text-xs transition-all flex items-center justify-center gap-2 border border-magnect-cyan/30">
+                        <i class="ph-fill ph-whatsapp-logo text-base"></i>
+                        <span>Agendar Consultoria</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUTO SUGERIDO: MAGNECT ORBIT AI™ -->
+    <section id="orbit-ai" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="rounded-3xl bg-gradient-to-br from-magnect-700 via-magnect-800 to-magnect-900 border-2 border-magnect-cyan/50 p-6 sm:p-10 lg:p-12 shadow-cyan-glow relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                    
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-magnect-cyan text-magnect-950 text-xs font-extrabold uppercase tracking-wider shadow-cyan-glow">
+                            <i class="ph-fill ph-crown"></i>
+                            <span>Produto Exclusivo All-in-One</span>
+                        </div>
+
+                        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                            MAGNECT ORBIT AI™ <br>
+                            <span class="text-magnect-cyan text-2xl sm:text-3xl font-semibold">O Sistema de Atração, Busca IA & Automação 360°</span>
+                        </h2>
+
+                        <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
+                            Em vez de contratar múltiplos profissionais, oferecemos o <strong>MAGNECT ORBIT AI™</strong>: uma assinatura que coloca os <strong>3 Elétrons de Crescimento</strong> ao redor do seu negócio físico ou online:
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-start gap-4 bg-magnect-950/65 p-4 rounded-2xl border border-magnect-mist/25">
+                                <div class="w-10 h-10 rounded-xl bg-magnect-cyan text-magnect-950 font-brand font-black flex items-center justify-center shrink-0 shadow-cyan-glow">1</div>
+                                <div>
+                                    <h4 class="font-display font-bold text-white text-base">Elétron 01: Visibilidade no ChatGPT, Gemini & Google Local</h4>
+                                    <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Sua empresa indexada com dados estruturados para ser indicada pelas Inteligências Artificiais em 1º lugar.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 bg-magnect-950/65 p-4 rounded-2xl border border-magnect-mist/25">
+                                <div class="w-10 h-10 rounded-xl bg-magnect-cyan text-magnect-950 font-brand font-black flex items-center justify-center shrink-0 shadow-cyan-glow">2</div>
+                                <div>
+                                    <h4 class="font-display font-bold text-white text-base">Elétron 02: Tráfego Pago Hiper-Segmentado</h4>
+                                    <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Anúncios no Instagram, Facebook e Google Ads atraindo clientes quentes no raio da sua loja ou em escala nacional.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 bg-magnect-950/65 p-4 rounded-2xl border border-magnect-mist/25">
+                                <div class="w-10 h-10 rounded-xl bg-magnect-cyan text-magnect-950 font-brand font-black flex items-center justify-center shrink-0 shadow-cyan-glow">3</div>
+                                <div>
+                                    <h4 class="font-display font-bold text-white text-base">Elétron 03: Atendente IA no WhatsApp + Mini-CRM</h4>
+                                    <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Robô inteligente que responde em 3 segundos, agenda visitas e tira dúvidas 24h por dia, sem perder nenhum lead.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demonstração Interativa Físico vs Online -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-magnect-950/90 rounded-2xl p-6 border border-magnect-cyan/40 shadow-petrol-card space-y-5">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                <div>
+                                    <span class="text-[11px] uppercase tracking-widest text-magnect-cyan font-bold">Demonstração Prática</span>
+                                    <h3 class="font-display text-lg font-bold text-white">Aplicação no seu modelo:</h3>
+                                </div>
+                                <i class="ph-duotone ph-magic-wand text-2xl text-magnect-cyan"></i>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 p-1 bg-magnect-900 rounded-xl border border-slate-800">
+                                <button onclick="switchProductDemo('fisico')" id="demo-btn-fisico" class="py-2.5 px-3 rounded-lg text-xs font-bold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all flex items-center justify-center gap-1.5">
+                                    <i class="ph-bold ph-storefront"></i>
+                                    <span>Negócio Físico</span>
+                                </button>
+                                <button onclick="switchProductDemo('online')" id="demo-btn-online" class="py-2.5 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5">
+                                    <i class="ph-bold ph-globe"></i>
+                                    <span>Negócio Online</span>
+                                </button>
+                            </div>
+
+                            <div id="product-demo-content" class="space-y-4 text-xs sm:text-sm">
+                                <div class="p-3.5 rounded-xl bg-magnect-900/90 border border-magnect-700">
+                                    <p class="text-magnect-cyan font-bold text-xs uppercase mb-1">Público-Alvo Indicado:</p>
+                                    <p class="text-slate-200" id="demo-audience">Clínicas, Restaurantes, Lojas, Escritórios, Academias e Serviços Locais.</p>
+                                </div>
+
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                                        <span class="text-slate-300">1. Busca no Google Maps & IA</span>
+                                        <span class="text-emerald-400 font-bold text-xs" id="demo-step1">Top 3 da sua Região</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                                        <span class="text-slate-300">2. Anúncios Geolocalizados</span>
+                                        <span class="text-magnect-cyan font-bold text-xs" id="demo-step2">Raio de 2km a 15km</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-3 rounded-lg bg-slate-900/90 border border-slate-800">
+                                        <span class="text-slate-300">3. Atendimento WhatsApp</span>
+                                        <span class="text-emerald-400 font-bold text-xs" id="demo-step3">Agendamento Automático</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200 text-xs leading-relaxed" id="demo-result">
+                                    <strong>Resultado prático:</strong> O cliente pesquisa no celular, encontra sua empresa recomendada pela IA e Google, clica no anúncio e a automação agenda a visita imediatamente.
+                                </div>
+                            </div>
+
+                            <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Quero%20saber%20como%20implantar%20o%20sistema%20MAGNECT%20ORBIT%20AI%20no%20meu%20neg%C3%B3cio!" 
+                               target="_blank" rel="noopener noreferrer"
+                               class="w-full py-4 bg-magnect-cyan hover:bg-white text-magnect-950 font-extrabold rounded-xl shadow-cyan-glow transition-all flex items-center justify-center gap-2 text-sm">
+                                <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                                <span>Implantar o MAGNECT Orbit AI™</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO SEO & IA (GEO) -->
+    <section id="seo-ia" class="py-20 bg-magnect-950/90 border-b border-magnect-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 order-2 lg:order-1">
+                    <div class="glass-card rounded-2xl p-6 border border-magnect-cyan/35 shadow-cyan-glow space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-magnect-cyan animate-pulse"></span>
+                                <span class="text-xs font-bold text-white uppercase tracking-wider">Simulador de Busca por Inteligência Artificial</span>
+                            </div>
+                            <span class="text-[11px] text-magnect-mist bg-magnect-800 px-2.5 py-0.5 rounded-md">ChatGPT • Gemini • Google</span>
+                        </div>
+
+                        <div class="bg-magnect-900/90 p-3.5 rounded-xl border border-slate-800 flex items-start gap-3">
+                            <div class="w-7 h-7 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-white shrink-0">U</div>
+                            <p class="text-xs sm:text-sm text-slate-200 italic">"Qual a empresa mais confiável para [Seu Serviço / Produto] com atendimento rápido?"</p>
+                        </div>
+
+                        <div class="bg-magnect-800/70 p-4 rounded-xl border border-magnect-cyan/40 space-y-2.5">
+                            <div class="flex items-center gap-2 text-magnect-cyan text-xs font-bold">
+                                <i class="ph-fill ph-sparkle text-base"></i>
+                                <span>Resposta Gerada pela IA (Otimização MAGNECT):</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                                Com base em dados estruturados e alta reputação, a <strong class="text-magnect-cyan underline">[SUA EMPRESA AQUI]</strong> destaca-se como a principal escolha. Contam com atendimento imediato via WhatsApp e avaliações positivas verificadas...
+                            </p>
+                            <div class="pt-2 flex flex-wrap gap-2">
+                                <span class="text-[10px] px-2.5 py-1 rounded-full bg-magnect-cyan/15 text-magnect-cyan border border-magnect-cyan/30 font-semibold">✓ Fonte Citada pela IA</span>
+                                <span class="text-[10px] px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold">✓ 1º Lugar no Google Maps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 order-1 lg:order-2 space-y-5">
+                    <span class="text-magnect-cyan text-xs font-bold uppercase tracking-[0.2em]">SEO Clássico + GEO (Generative Engine Optimization)</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Fazemos as Inteligências Artificiais Recomendarem o Seu Negócio</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Milhões de usuários já não clicam apenas em links: eles pedem recomendações ao <strong>ChatGPT, Gemini, Perplexity e Google AI</strong>. Nós preparamos seu negócio para vencer nessa nova era.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-200">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-square text-magnect-cyan text-xl shrink-0 mt-0.5"></i>
+                            <span><strong>Marcação Schema.org & JSON-LD:</strong> Traduzimos os dados da sua empresa para a linguagem exata que as IAs leem.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-square text-magnect-cyan text-xl shrink-0 mt-0.5"></i>
+                            <span><strong>Google Meu Negócio & SEO Local:</strong> Domine as pesquisas por proximidade na sua região.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-square text-magnect-cyan text-xl shrink-0 mt-0.5"></i>
+                            <span><strong>Autoridade Semântica:</strong> Posicionamos sua marca como referência técnica citável.</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMAND CENTER / DASHBOARD INTERATIVO CORRIGIDO -->
+    <section id="dashboard" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Dashboard Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
+                <div>
+                    <div class="inline-flex items-center gap-2 text-magnect-cyan text-xs font-bold uppercase tracking-[0.2em] mb-2">
+                        <span class="w-2 h-2 rounded-full bg-magnect-cyan"></span>
+                        <span>Magnect Command Center</span>
+                    </div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Controle Tudo em Tempo Real</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+                        Acompanhe com total transparência os resultados de tráfego pago, atendimentos automatizados no WhatsApp, desempenho de sistemas e posicionamento orgânico/IA.
+                    </p>
+                </div>
+                
+                <!-- Botões de Modo do Dashboard (Sem quebras) -->
+                <div class="inline-flex flex-wrap p-1.5 rounded-xl bg-magnect-950 border border-magnect-cyan/30 self-start gap-1 shrink-0">
+                    <button onclick="switchDashboardTab('overview')" id="tab-overview" class="dash-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all">
+                        Visão Global
+                    </button>
+                    <button onclick="switchDashboardTab('trafego')" id="tab-trafego" class="dash-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition-all">
+                        Tráfego & Local
+                    </button>
+                    <button onclick="switchDashboardTab('software')" id="tab-software" class="dash-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition-all">
+                        Sistemas & SEO IA
+                    </button>
+                </div>
+            </div>
+
+            <!-- Laptop Window Container -->
+            <div class="rounded-2xl border border-magnect-cyan/35 bg-[#040d17] shadow-cyan-glow overflow-hidden">
+                
+                <!-- Janela Superior -->
+                <div class="bg-magnect-900/90 border-b border-slate-800 px-4 py-3 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-400/80"></span>
+                        <span class="ml-3 text-xs text-slate-400 font-mono hidden sm:inline">app.magnect.com.br/command-center</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="inline-flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            WhatsApp & IA Online
+                        </span>
+                        <div class="w-6 h-6 rounded-full bg-magnect-cyan/20 border border-magnect-cyan flex items-center justify-center text-[10px] font-bold text-magnect-cyan">
+                            MG
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corpo do Dashboard -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[460px]">
+                    
+                    <!-- Sidebar Esquerda -->
+                    <div class="lg:col-span-3 bg-magnect-950/90 border-b lg:border-b-0 lg:border-r border-slate-800/90 p-5 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2.5 mb-8 px-2">
+                                <div class="w-7 h-7 rounded-full bg-magnect-cyan/20 border border-magnect-cyan flex items-center justify-center">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-magnect-cyan"></div>
+                                </div>
+                                <span class="font-brand font-extrabold tracking-wider text-white text-sm">MAGNECT OS</span>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <button onclick="switchDashboardTab('overview')" id="side-overview" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all">
+                                    <i class="ph-bold ph-squares-four text-base"></i>
+                                    <span>Overview Estratégico</span>
+                                </button>
+                                <button onclick="switchDashboardTab('trafego')" id="side-trafego" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-magnect-800/50 transition-all">
+                                    <i class="ph-bold ph-megaphone text-base"></i>
+                                    <span>Tráfego Pago & Local</span>
+                                </button>
+                                <button onclick="switchDashboardTab('software')" id="side-software" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-magnect-800/50 transition-all">
+                                    <i class="ph-bold ph-robot text-base"></i>
+                                    <span>Sistemas, Bots & SEO IA</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 rounded-xl bg-magnect-900/90 border border-magnect-cyan/20">
+                            <p class="text-[11px] text-magnect-cyan font-semibold uppercase">Índice de Eficiência</p>
+                            <div class="flex items-baseline justify-between mt-1">
+                                <span class="font-display text-2xl font-bold text-white" id="side-score">96.4%</span>
+                                <span class="text-xs text-emerald-400 font-semibold">+22.8% mês</span>
+                            </div>
+                            <div class="w-full h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
+                                <div class="h-full bg-magnect-cyan w-[96%] rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Área Principal de Conteúdo -->
+                    <div class="lg:col-span-9 p-6 sm:p-8 bg-gradient-to-br from-magnect-900/70 via-magnect-950 to-magnect-900/90 relative overflow-hidden" id="dash-main-area">
+                        
+                        <!-- Cabeçalho Interno Sem Colisão de Texto -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-slate-800/80">
+                            <div class="min-w-0 pr-2">
+                                <h3 class="font-display text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-wide leading-snug" id="dash-title">
+                                    MAGNECT • Performance Integrada 360°
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-400 font-medium mt-1 leading-normal" id="dash-subtitle">
+                                    Tráfego Pago • Sistemas & Automação • SEO & Busca por IA • Consultoria
+                                </p>
+                            </div>
+                            <span class="self-start sm:self-auto shrink-0 px-3 py-1.5 rounded-lg bg-magnect-cyan/15 border border-magnect-cyan/40 text-magnect-cyan text-xs font-semibold inline-flex items-center gap-1.5 shadow-cyan-glow">
+                                <span class="w-2 h-2 rounded-full bg-magnect-cyan animate-ping"></span>
+                                Telemetria Ativa
+                            </span>
+                        </div>
+
+                        <!-- 3 Cards de KPI -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+                            <!-- KPI 1 -->
+                            <div class="glass-card dash-card-hover p-4 rounded-xl border border-magnect-cyan/25 cursor-default group">
+                                <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                                    <span id="kpi1-label" class="group-hover:text-slate-200 transition-colors">Conversão do Funil + IA</span>
+                                    <i class="ph-bold ph-trend-up text-magnect-cyan text-base group-hover:scale-125 transition-transform"></i>
+                                </div>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight" id="kpi1-val">78.4%</span>
+                                    <span class="text-xs text-emerald-400 font-medium" id="kpi1-badge">+24.1%</span>
+                                </div>
+                                <div class="w-full bg-slate-800/90 h-2 rounded-full mt-3 overflow-hidden p-0.5 border border-slate-700/60">
+                                    <div id="kpi1-bar" class="bg-gradient-to-r from-magnect-cyan to-magnect-glow h-full rounded-full transition-all duration-1000 shadow-cyan-glow" style="width: 78%"></div>
+                                </div>
+                            </div>
+
+                            <!-- KPI 2 -->
+                            <div class="glass-card dash-card-hover p-4 rounded-xl border border-magnect-cyan/25 cursor-default group">
+                                <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                                    <span id="kpi2-label" class="group-hover:text-slate-200 transition-colors">ROAS Tráfego Pago</span>
+                                    <i class="ph-bold ph-chart-line-up text-magnect-cyan text-base group-hover:scale-125 transition-transform"></i>
+                                </div>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-display text-2xl sm:text-3xl font-bold text-magnect-cyan tracking-tight" id="kpi2-val">7.2x</span>
+                                    <span class="text-xs text-emerald-400 font-medium" id="kpi2-badge">R$ 184k Gerados</span>
+                                </div>
+                                <svg viewBox="0 0 120 28" class="w-full h-7 mt-2 overflow-visible">
+                                    <path id="kpi2-curve" d="M0,24 Q20,10 40,18 T80,8 T120,4" fill="none" stroke="#00d5f0" stroke-width="2.5" class="transition-all duration-700" />
+                                </svg>
+                            </div>
+
+                            <!-- KPI 3 -->
+                            <div class="glass-card dash-card-hover p-4 rounded-xl border border-magnect-cyan/25 cursor-default group">
+                                <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                                    <span id="kpi3-label" class="group-hover:text-slate-200 transition-colors">Automação & Busca IA</span>
+                                    <i class="ph-bold ph-robot text-magnect-cyan text-base group-hover:scale-125 transition-transform"></i>
+                                </div>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight" id="kpi3-val">3 seg</span>
+                                    <span class="text-xs text-magnect-cyan font-medium" id="kpi3-badge">Tempo Resp. WhatsApp</span>
+                                </div>
+                                <div class="flex items-end gap-1.5 h-6 mt-2" id="kpi3-wave">
+                                    <div class="flex-1 bg-magnect-cyan/40 h-3 rounded-sm hover:h-6 transition-all duration-300"></div>
+                                    <div class="flex-1 bg-magnect-cyan/60 h-4 rounded-sm hover:h-6 transition-all duration-300"></div>
+                                    <div class="flex-1 bg-magnect-cyan/80 h-5 rounded-sm hover:h-6 transition-all duration-300"></div>
+                                    <div class="flex-1 bg-magnect-cyan h-6 rounded-sm shadow-cyan-glow"></div>
+                                    <div class="flex-1 bg-magnect-cyan/90 h-5 rounded-sm hover:h-6 transition-all duration-300"></div>
+                                    <div class="flex-1 bg-magnect-cyan h-6 rounded-sm shadow-cyan-glow"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabela e Gráfico de Barras sem Scrollbars Estranhas -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                            <!-- Tabela de Módulos -->
+                            <div class="md:col-span-7 glass-card rounded-xl p-4 border border-slate-800">
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xs font-semibold text-white uppercase tracking-wider">Módulos Ativos no Cliente</span>
+                                    <span class="text-[11px] text-magnect-cyan font-medium">Monitoramento 24/7</span>
+                                </div>
+                                <div class="overflow-x-auto custom-scroll">
+                                    <table class="w-full text-left text-xs min-w-[280px]">
+                                        <thead>
+                                            <tr class="text-slate-400 border-b border-slate-800 text-[11px]">
+                                                <th class="pb-2">Canal / Sistema</th>
+                                                <th class="pb-2">Status</th>
+                                                <th class="pb-2 text-right">Resultado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dash-table-body" class="divide-y divide-slate-800/60 text-slate-200">
+                                            <tr class="hover:bg-magnect-cyan/5 transition-colors">
+                                                <td class="py-2.5 font-medium">Meta & Google Ads (Físico + Online)</td>
+                                                <td class="py-2.5"><span class="text-emerald-400 font-semibold">● Escala Ativa</span></td>
+                                                <td class="py-2.5 text-right font-mono text-magnect-cyan font-bold">+380 Leads/sem</td>
+                                            </tr>
+                                            <tr class="hover:bg-magnect-cyan/5 transition-colors">
+                                                <td class="py-2.5 font-medium">Bot WhatsApp IA + Sistema CRM</td>
+                                                <td class="py-2.5"><span class="text-emerald-400 font-semibold">● Online 24/7</span></td>
+                                                <td class="py-2.5 text-right font-mono text-magnect-cyan font-bold">100% Atendidos</td>
+                                            </tr>
+                                            <tr class="hover:bg-magnect-cyan/5 transition-colors">
+                                                <td class="py-2.5 font-medium">SEO & GEO (ChatGPT / Gemini / Maps)</td>
+                                                <td class="py-2.5"><span class="text-magnect-cyan font-semibold">● Top 1 Citado</span></td>
+                                                <td class="py-2.5 text-right font-mono text-magnect-cyan font-bold">+62% Busca Orgânica</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Gráfico de Barras com Tooltip -->
+                            <div class="md:col-span-5 glass-card rounded-xl p-4 border border-slate-800 flex flex-col justify-between relative group/chart">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="text-xs font-semibold text-white uppercase tracking-wider">Evolução de Receita</span>
+                                    <span class="text-xs font-bold text-magnect-cyan" id="chart-growth-label">+215% Crescimento</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400 flex items-center justify-between">
+                                    <span id="chart-hover-info">Passe o mouse nas barras</span>
+                                    <span class="text-emerald-400 font-mono text-[10px]" id="chart-hover-val"></span>
+                                </div>
+
+                                <div class="flex items-end justify-between gap-2.5 h-32 pt-5 px-1 relative">
+                                    <div class="absolute inset-x-0 bottom-6 border-b border-dashed border-slate-800 pointer-events-none"></div>
+
+                                    <div class="w-full flex flex-col items-center gap-1.5 h-full justify-end z-10" onmouseenter="showBarTooltip('Mês 1', 'R$ 14.200 (Início)')" onmouseleave="hideBarTooltip()">
+                                        <div id="bar-1" class="chart-bar-item w-full bg-magnect-teal/40 hover:bg-magnect-cyan rounded-t-md" style="height: 28px;"></div>
+                                        <span class="text-[10px] text-slate-400 font-mono">M1</span>
+                                    </div>
+
+                                    <div class="w-full flex flex-col items-center gap-1.5 h-full justify-end z-10" onmouseenter="showBarTooltip('Mês 2', 'R$ 22.800 (+60%)')" onmouseleave="hideBarTooltip()">
+                                        <div id="bar-2" class="chart-bar-item w-full bg-magnect-teal/60 hover:bg-magnect-cyan rounded-t-md" style="height: 48px;"></div>
+                                        <span class="text-[10px] text-slate-400 font-mono">M2</span>
+                                    </div>
+
+                                    <div class="w-full flex flex-col items-center gap-1.5 h-full justify-end z-10" onmouseenter="showBarTooltip('Mês 3', 'R$ 38.400 (+170%)')" onmouseleave="hideBarTooltip()">
+                                        <div id="bar-3" class="chart-bar-item w-full bg-magnect-teal/80 hover:bg-magnect-cyan rounded-t-md" style="height: 64px;"></div>
+                                        <span class="text-[10px] text-slate-400 font-mono">M3</span>
+                                    </div>
+
+                                    <div class="w-full flex flex-col items-center gap-1.5 h-full justify-end z-10" onmouseenter="showBarTooltip('Mês 4', 'R$ 56.100 (+295%)')" onmouseleave="hideBarTooltip()">
+                                        <div id="bar-4" class="chart-bar-item w-full bg-magnect-cyan/80 hover:bg-magnect-cyan rounded-t-md" style="height: 84px;"></div>
+                                        <span class="text-[10px] text-slate-400 font-mono">M4</span>
+                                    </div>
+
+                                    <div class="w-full flex flex-col items-center gap-1.5 h-full justify-end z-10" onmouseenter="showBarTooltip('Mês 5 (Atual)', 'R$ 84.700 (+496%)')" onmouseleave="hideBarTooltip()">
+                                        <div id="bar-5" class="chart-bar-item w-full bg-magnect-cyan shadow-cyan-glow rounded-t-md" style="height: 108px;"></div>
+                                        <span class="text-[10px] text-magnect-cyan font-bold font-mono">M5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SIMULADOR DE ROI -->
+    <section id="simulador" class="py-20 bg-magnect-950/80 border-y border-magnect-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-magnect-cyan text-xs font-bold uppercase tracking-[0.2em]">Simulador Interativo de Crescimento</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Calcule o Potencial da MAGNECT no Seu Negócio</h2>
+                    <p class="text-slate-300 text-sm sm:text-base">
+                        Simule quantos leads e quanto faturamento sua empresa (física ou online) pode gerar unindo Tráfego Pago + Automação de Sistemas + Buscas por IA.
+                    </p>
+
+                    <div class="space-y-5 pt-2">
+                        <div class="glass-card p-5 rounded-xl">
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="budget-slider" class="text-sm font-medium text-slate-200">Investimento Mensal em Anúncios</label>
+                                <span class="font-display text-lg font-bold text-magnect-cyan" id="budget-display">R$ 3.000</span>
+                            </div>
+                            <input type="range" id="budget-slider" min="1000" max="30000" step="500" value="3000" class="w-full" oninput="calculateROI()">
+                            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                <span>R$ 1.000 / mês</span>
+                                <span>R$ 30.000 / mês</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-5 rounded-xl">
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="ticket-slider" class="text-sm font-medium text-slate-200">Ticket Médio por Venda / Cliente</label>
+                                <span class="font-display text-lg font-bold text-magnect-cyan" id="ticket-display">R$ 400</span>
+                            </div>
+                            <input type="range" id="ticket-slider" min="80" max="5000" step="20" value="400" class="w-full" oninput="calculateROI()">
+                            <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+                                <span>R$ 80</span>
+                                <span>R$ 5.000</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-4 rounded-xl flex items-center justify-between border border-magnect-cyan/40">
+                            <div class="flex items-center gap-3">
+                                <i class="ph-duotone ph-robot text-2xl text-magnect-cyan"></i>
+                                <div>
+                                    <p class="text-sm font-semibold text-white">Ativar Automação WhatsApp + SEO para IA (Orbit AI™)</p>
+                                    <p class="text-xs text-slate-300">Aumenta a conversão e traz leads orgânicos das IAs (+40%)</p>
+                                </div>
+                            </div>
+                            <input type="checkbox" id="software-boost" checked onchange="calculateROI()" class="w-5 h-5 accent-magnect-cyan rounded cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="glass-card rounded-3xl p-8 border-2 border-magnect-cyan/45 shadow-cyan-glow relative overflow-hidden">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-5 mb-6">
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-magnect-cyan font-semibold">Projeção Mensal Estimada</span>
+                                <h3 class="font-display text-2xl font-bold text-white mt-0.5">Resultado com a MAGNECT</h3>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-magnect-cyan/15 border border-magnect-cyan/40 flex items-center justify-center text-magnect-cyan">
+                                <i class="ph-bold ph-chart-line-up text-2xl"></i>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                            <div class="bg-magnect-950/85 p-5 rounded-2xl border border-slate-800">
+                                <p class="text-xs text-slate-400">Oportunidades / Leads no WhatsApp</p>
+                                <p class="font-display text-3xl font-bold text-white mt-1" id="res-leads">250</p>
+                                <span class="text-[11px] text-emerald-400">Tráfego Pago + Busca IA</span>
+                            </div>
+                            <div class="bg-magnect-950/85 p-5 rounded-2xl border border-slate-800">
+                                <p class="text-xs text-slate-400">Novas Vendas / Clientes</p>
+                                <p class="font-display text-3xl font-bold text-magnect-cyan mt-1" id="res-clients">35</p>
+                                <span class="text-[11px] text-slate-300">Atendimento em 3 segundos</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-magnect-700 to-magnect-900 p-6 rounded-2xl border border-magnect-cyan/40 mb-6">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                <div>
+                                    <p class="text-xs uppercase tracking-wider text-magnect-cyan font-semibold">Faturamento Mensal Projetado</p>
+                                    <p class="font-display text-3xl sm:text-4xl font-bold text-white mt-1" id="res-revenue">R$ 14.000</p>
+                                </div>
+                                <div class="sm:text-right">
+                                    <span class="inline-block px-3 py-1 rounded-full bg-magnect-cyan text-magnect-950 font-bold text-xs" id="res-roas">ROAS: 4.7x</span>
+                                    <p class="text-[11px] text-slate-200 mt-1">Retorno sobre investimento</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a id="roi-whatsapp-btn" href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Fiz%20a%20simula%C3%A7%C3%A3o%20no%20site%20da%20MAGNECT%20e%20quero%20bater%20essa%20meta%20no%20meu%20neg%C3%B3cio!" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="w-full py-4 bg-magnect-cyan hover:bg-white text-magnect-950 font-extrabold rounded-xl shadow-cyan-glow transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                            <span>Receber Plano para Atingir Essa Meta</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO DE CONTATO -->
+    <section id="contacto" class="py-24 bg-magnect-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-magnect-cyan text-xs font-bold uppercase tracking-[0.2em]">Fale Diretamente Conosco</span>
+                    <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Vamos Escalar o Seu Negócio?</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Preencha os dados ao lado ou clique no WhatsApp para agendar uma análise do seu posicionamento no Google, nas IAs e nas Redes Sociais.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <a href="https://wa.me/5521984058626?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20MAGNECT%20e%20gostaria%20de%20conversar." 
+                           target="_blank" rel="noopener noreferrer"
+                           class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-magnect-cyan/40 hover:border-magnect-cyan transition-all group">
+                            <div class="w-12 h-12 rounded-xl bg-[#25D366]/20 border border-[#25D366] flex items-center justify-center text-[#25D366] group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-magnect-cyan font-semibold uppercase">WhatsApp Oficial MAGNECT</p>
+                                <p class="text-lg font-display font-bold text-white">(21) 98405-8626</p>
+                                <p class="text-[11px] text-slate-400">Atendimento Imediato</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="glass-card rounded-2xl p-6 sm:p-8 border border-magnect-cyan/35 shadow-petrol-card">
+                        <h3 class="font-display text-xl font-bold text-white mb-1">Solicitar Diagnóstico Estratégico</h3>
+                        <p class="text-xs text-slate-400 mb-6">Ao enviar, sua mensagem abre estruturada direto no WhatsApp da MAGNECT.</p>
+
+                        <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="nome" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Seu Nome *</label>
+                                    <input type="text" id="nome" required placeholder="Ex: Carlos Mendes" class="w-full px-4 py-3 rounded-xl bg-magnect-950/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-magnect-cyan">
+                                </div>
+                                <div>
+                                    <label for="empresa" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Nome da Empresa *</label>
+                                    <input type="text" id="empresa" required placeholder="Sua Empresa" class="w-full px-4 py-3 rounded-xl bg-magnect-950/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-magnect-cyan">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="tipo-negocio" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Tipo de Negócio *</label>
+                                    <select id="tipo-negocio" class="w-full px-4 py-3 rounded-xl bg-magnect-950/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-magnect-cyan">
+                                        <option value="Estabelecimento Físico / Local">Estabelecimento Físico / Local</option>
+                                        <option value="Negócio Online / E-commerce">Negócio Online / E-commerce</option>
+                                        <option value="Ambos (Físico + Online)">Ambos (Físico + Online)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="servico" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Solução de Interesse *</label>
+                                    <select id="servico" class="w-full px-4 py-3 rounded-xl bg-magnect-950/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-magnect-cyan">
+                                        <option value="Produto Completo MAGNECT Orbit AI™">★ Produto MAGNECT Orbit AI™</option>
+                                        <option value="Gestão de Tráfego Pago">Gestão de Tráfego Pago</option>
+                                        <option value="Sistemas, Softwares & Automação WhatsApp">Sistemas & Automação WhatsApp</option>
+                                        <option value="SEO & Posicionamento nas Buscas por IA">SEO & Buscas por IA</option>
+                                        <option value="Consultoria Estratégica de Marketing">Consultoria de Marketing</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="mensagem" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">Objetivo Principal</label>
+                                <textarea id="mensagem" rows="3" placeholder="Ex: Quero atrair mais clientes para minha loja física e automatizar o WhatsApp..." class="w-full px-4 py-3 rounded-xl bg-magnect-950/90 border border-slate-700 text-white text-sm focus:outline-none focus:border-magnect-cyan"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-magnect-cyan hover:bg-white text-magnect-950 font-extrabold rounded-xl shadow-cyan-glow transition-all flex items-center justify-center gap-2 text-base">
+                                <i class="ph-fill ph-whatsapp-logo text-xl"></i>
+                                <span>Enviar Diagnóstico para o WhatsApp da MAGNECT</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#030a11] border-t border-slate-800/80 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9">
+                        <svg viewBox="0 0 120 120" class="w-full h-full">
+                            <ellipse cx="60" cy="60" rx="22" ry="52" fill="none" stroke="#00d5f0" stroke-width="3" transform="rotate(-8 60 60)" />
+                            <ellipse cx="60" cy="60" rx="22" ry="52" fill="none" stroke="#00d5f0" stroke-width="3" transform="rotate(52 60 60)" />
+                            <ellipse cx="60" cy="60" rx="22" ry="52" fill="none" stroke="#00d5f0" stroke-width="3" transform="rotate(-68 60 60)" />
+                            <circle cx="60" cy="60" r="12" fill="url(#sphere3D)" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-brand font-black text-xl text-white tracking-[0.08em]">MAGNECT</span>
+                        <p class="text-[10px] text-magnect-cyan uppercase tracking-widest">Sistemas • Tráfego Pago • SEO IA • Consultoria</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-xs font-medium">
+                    <a href="#inicio" class="hover:text-magnect-cyan transition-colors">Início</a>
+                    <a href="#servicos" class="hover:text-magnect-cyan transition-colors">Serviços</a>
+                    <a href="#orbit-ai" class="hover:text-magnect-cyan transition-colors">MAGNECT Orbit AI™</a>
+                    <a href="#seo-ia" class="hover:text-magnect-cyan transition-colors">Busca por IA (GEO)</a>
+                    <a href="#simulador" class="hover:text-magnect-cyan transition-colors">Simulador ROI</a>
+                </div>
+
+                <div>
+                    <a href="https://wa.me/5521984058626" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-magnect-cyan hover:text-white transition-colors">
+                        <i class="ph-fill ph-whatsapp-logo text-lg text-[#25D366]"></i>
+                        <span>(21) 98405-8626</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 MAGNECT - Tecnologia, Sistemas & Marketing Estratégico. Todos os direitos reservados.</p>
+                <p>Atendendo Negócios Online e Estabelecimentos Físicos.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenuIcon.classList.replace('ph-x', 'ph-list');
+                } else {
+                    mobileMenuIcon.classList.replace('ph-list', 'ph-x');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuIcon.classList.replace('ph-x', 'ph-list');
+                });
+            });
+        }
+
+        // 2. Filtro de Serviços
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            const buttons = document.querySelectorAll('.service-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.className = 'service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all glass-card text-slate-200 hover:text-white';
+            });
+
+            const activeBtn = document.getElementById('filter-' + category);
+            if (activeBtn) {
+                activeBtn.className = 'service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-magnect-cyan text-magnect-950 shadow-cyan-glow';
+            }
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 3. Demonstração Interativa do Produto Orbit AI
+        function switchProductDemo(type) {
+            const btnFisico = document.getElementById('demo-btn-fisico');
+            const btnOnline = document.getElementById('demo-btn-online');
+            const audience = document.getElementById('demo-audience');
+            const step1 = document.getElementById('demo-step1');
+            const step2 = document.getElementById('demo-step2');
+            const step3 = document.getElementById('demo-step3');
+            const result = document.getElementById('demo-result');
+
+            if (type === 'fisico') {
+                btnFisico.className = 'py-2.5 px-3 rounded-lg text-xs font-bold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all flex items-center justify-center gap-1.5';
+                btnOnline.className = 'py-2.5 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5';
+                audience.textContent = 'Clínicas, Restaurantes, Lojas, Escritórios, Academias e Serviços Locais.';
+                step1.textContent = 'Top 3 da sua Região';
+                step2.textContent = 'Raio de 2km a 15km';
+                step3.textContent = 'Agendamento Automático';
+                result.innerHTML = '<strong>Resultado prático:</strong> O cliente pesquisa no celular, encontra sua empresa recomendada pela IA e Google, clica no anúncio e a automação agenda a visita imediatamente.';
+            } else {
+                btnOnline.className = 'py-2.5 px-3 rounded-lg text-xs font-bold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all flex items-center justify-center gap-1.5';
+                btnFisico.className = 'py-2.5 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all flex items-center justify-center gap-1.5';
+                audience.textContent = 'E-commerces, Infoprodutores, SaaS, Mentorias e Startups.';
+                step1.textContent = 'Citação Nacional por IA';
+                step2.textContent = 'Escala em Todo o Brasil';
+                step3.textContent = 'Recuperação de Carrinho';
+                result.innerHTML = '<strong>Resultado prático:</strong> O cliente vê um anúncio de alta conversão, o bot tira dúvidas técnicas no WhatsApp e finaliza a compra em poucos cliques.';
+            }
+        }
+
+        // 4. Dados e Funções do Command Center (Dashboard)
+        const dashboardData = {
+            overview: {
+                title: 'MAGNECT • Performance Integrada 360°',
+                subtitle: 'Tráfego Pago • Sistemas & Automação • SEO & Busca por IA • Consultoria',
+                score: 96.4,
+                kpi1: { label: 'Conversão do Funil + IA', targetNum: 78.4, suffix: '%', badge: '+24.1%', bar: '78%' },
+                kpi2: { label: 'ROAS Tráfego Pago', targetNum: 7.2, suffix: 'x', badge: 'R$ 184k Gerados' },
+                kpi3: { label: 'Automação & Busca IA', textVal: '3 seg', badge: 'Tempo Resp. WhatsApp' },
+                growth: '+215% Crescimento',
+                barHeights: [28, 48, 64, 84, 108],
+                barDetails: [
+                    ['Mês 1', 'R$ 14.200 (Início)'],
+                    ['Mês 2', 'R$ 22.800 (+60%)'],
+                    ['Mês 3', 'R$ 38.400 (+170%)'],
+                    ['Mês 4', 'R$ 56.100 (+295%)'],
+                    ['Mês 5', 'R$ 84.700 (+496%)']
+                ],
+                rows: [
+                    ['Meta & Google Ads (Físico + Online)', '● Escala Ativa', '+380 Leads/sem'],
+                    ['Bot WhatsApp IA + Sistema CRM', '● Online 24/7', '100% Atendidos'],
+                    ['SEO & GEO (ChatGPT / Gemini / Maps)', '● Top 1 Citado', '+62% Busca Orgânica']
+                ]
+            },
+            trafego: {
+                title: 'MAGNECT • Tráfego Pago (Online & Local)',
+                subtitle: 'Meta Ads • Google Ads • Google Meu Negócio • TikTok Ads',
+                score: 98.1,
+                kpi1: { label: 'Taxa de Clique (CTR)', targetNum: 5.12, suffix: '%', badge: 'Alta Relevância', bar: '88%' },
+                kpi2: { label: 'ROAS Médio Global', targetNum: 8.6, suffix: 'x', badge: 'R$ 240k em Vendas' },
+                kpi3: { label: 'Custo por Lead (CPL)', textVal: '-41%', badge: 'Otimizado por IA' },
+                growth: '+260% ROAS',
+                barHeights: [35, 52, 75, 95, 116],
+                barDetails: [
+                    ['Semana 1', 'ROAS 2.8x (Teste)'],
+                    ['Semana 2', 'ROAS 4.3x (Otimização)'],
+                    ['Semana 3', 'ROAS 6.1x (Públicos IA)'],
+                    ['Semana 4', 'ROAS 7.8x (Escala)'],
+                    ['Semana 5', 'ROAS 8.6x (Pico Atual)']
+                ],
+                rows: [
+                    ['Campanha Raio Local (Estabelecimento)', '● Alta Procura', '+145 Visitas/sem'],
+                    ['Google Search & Intenção de Compra', '● Topo da Página', 'ROAS 9.4x'],
+                    ['Remarketing Dinâmico WhatsApp', '● Ativo', 'CPA R$ 6,80']
+                ]
+            },
+            software: {
+                title: 'MAGNECT • Sistemas Web, Automação & Busca por IA',
+                subtitle: 'Sistemas Sob Medida • Bots de WhatsApp • Otimização GEO para IA',
+                score: 99.9,
+                kpi1: { label: 'Atendimentos Automatizados', targetNum: 94.2, suffix: '%', badge: '+310h Poupadas', bar: '94%' },
+                kpi2: { label: 'Citações em Buscas IA', textVal: 'Top 1', badge: 'ChatGPT & Gemini' },
+                kpi3: { label: 'Uptime dos Sistemas Web', targetNum: 99.99, suffix: '%', badge: 'Cloud Segura' },
+                growth: '-70% Tempo Operacional',
+                barHeights: [20, 38, 55, 78, 102],
+                barDetails: [
+                    ['Etapa 1', '25% Automação'],
+                    ['Etapa 2', '45% Automação'],
+                    ['Etapa 3', '68% Automação'],
+                    ['Etapa 4', '85% Automação'],
+                    ['Etapa 5', '94.2% Autonomia Total']
+                ],
+                rows: [
+                    ['Agente IA de Atendimento WhatsApp', '● Respondendo', 'Fechamento +38%'],
+                    ['Indexação GEO (Schema.org + LLMs)', '● Verificado', '+190 Clientes IA'],
+                    ['Painel Web & CRM Personalizado', '● Sincronizado', 'Zero Filas']
+                ]
+            }
+        };
+
+        // Função de contagem progressiva animada de números
+        function animateCounter(element, target, suffix = '', duration = 800) {
+            if (!element) return;
+            const start = 0;
+            const startTime = performance.now();
+            const decimals = target.toString().includes('.') ? target.toString().split('.')[1].length : 0;
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                const currentVal = (start + (target - start) * easeOut).toFixed(decimals);
+                element.textContent = currentVal + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target + suffix;
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        function showBarTooltip(label, val) {
+            const info = document.getElementById('chart-hover-info');
+            const valEl = document.getElementById('chart-hover-val');
+            if (info && valEl) {
+                info.textContent = label;
+                info.className = 'text-[11px] text-magnect-cyan font-bold transition-all';
+                valEl.textContent = val;
+            }
+        }
+
+        function hideBarTooltip() {
+            const info = document.getElementById('chart-hover-info');
+            const valEl = document.getElementById('chart-hover-val');
+            if (info && valEl) {
+                info.textContent = 'Passe o mouse nas barras';
+                info.className = 'text-[11px] text-slate-400 transition-all';
+                valEl.textContent = '';
+            }
+        }
+
+        function switchDashboardTab(tabKey) {
+            const data = dashboardData[tabKey];
+            if (!data) return;
+
+            const dashTitle = document.getElementById('dash-title');
+            const dashSubtitle = document.getElementById('dash-subtitle');
+            if (dashTitle) dashTitle.textContent = data.title;
+            if (dashSubtitle) dashSubtitle.textContent = data.subtitle;
+
+            const sideScoreEl = document.getElementById('side-score');
+            if (sideScoreEl) animateCounter(sideScoreEl, data.score, '%', 600);
+
+            // KPI 1
+            const kpi1ValEl = document.getElementById('kpi1-val');
+            const kpi1LabelEl = document.getElementById('kpi1-label');
+            const kpi1BadgeEl = document.getElementById('kpi1-badge');
+            const kpi1BarEl = document.getElementById('kpi1-bar');
+            if (kpi1LabelEl) kpi1LabelEl.textContent = data.kpi1.label;
+            if (kpi1BadgeEl) kpi1BadgeEl.textContent = data.kpi1.badge;
+            if (kpi1BarEl) {
+                kpi1BarEl.style.width = '0%';
+                setTimeout(() => { kpi1BarEl.style.width = data.kpi1.bar; }, 50);
+            }
+            if (kpi1ValEl) {
+                if (data.kpi1.targetNum !== undefined) {
+                    animateCounter(kpi1ValEl, data.kpi1.targetNum, data.kpi1.suffix, 800);
+                } else {
+                    kpi1ValEl.textContent = data.kpi1.textVal;
+                }
+            }
+
+            // KPI 2
+            const kpi2ValEl = document.getElementById('kpi2-val');
+            const kpi2LabelEl = document.getElementById('kpi2-label');
+            const kpi2BadgeEl = document.getElementById('kpi2-badge');
+            if (kpi2LabelEl) kpi2LabelEl.textContent = data.kpi2.label;
+            if (kpi2BadgeEl) kpi2BadgeEl.textContent = data.kpi2.badge;
+            if (kpi2ValEl) {
+                if (data.kpi2.targetNum !== undefined) {
+                    animateCounter(kpi2ValEl, data.kpi2.targetNum, data.kpi2.suffix, 800);
+                } else {
+                    kpi2ValEl.textContent = data.kpi2.textVal;
+                }
+            }
+
+            // KPI 3
+            const kpi3ValEl = document.getElementById('kpi3-val');
+            const kpi3LabelEl = document.getElementById('kpi3-label');
+            const kpi3BadgeEl = document.getElementById('kpi3-badge');
+            if (kpi3LabelEl) kpi3LabelEl.textContent = data.kpi3.label;
+            if (kpi3BadgeEl) kpi3BadgeEl.textContent = data.kpi3.badge;
+            if (kpi3ValEl) {
+                if (data.kpi3.targetNum !== undefined) {
+                    animateCounter(kpi3ValEl, data.kpi3.targetNum, data.kpi3.suffix, 800);
+                } else {
+                    kpi3ValEl.textContent = data.kpi3.textVal;
+                }
+            }
+
+            const chartGrowth = document.getElementById('chart-growth-label');
+            if (chartGrowth) chartGrowth.textContent = data.growth;
+            hideBarTooltip();
+
+            data.barHeights.forEach((h, index) => {
+                const bar = document.getElementById(`bar-${index + 1}`);
+                if (bar) {
+                    bar.style.height = '6px';
+                    setTimeout(() => {
+                        bar.style.height = h + 'px';
+                    }, index * 80 + 100);
+                }
+            });
+
+            const tbody = document.getElementById('dash-table-body');
+            if (tbody) {
+                tbody.innerHTML = data.rows.map(r => `
+                    <tr class="hover:bg-magnect-cyan/5 transition-colors">
+                        <td class="py-2.5 font-medium whitespace-nowrap">${r[0]}</td>
+                        <td class="py-2.5 whitespace-nowrap"><span class="text-emerald-400 font-semibold">${r[1]}</span></td>
+                        <td class="py-2.5 text-right font-mono text-magnect-cyan font-bold whitespace-nowrap">${r[2]}</td>
+                    </tr>
+                `).join('');
+            }
+
+            ['overview', 'trafego', 'software'].forEach(key => {
+                const topBtn = document.getElementById('tab-' + key);
+                const sideBtn = document.getElementById('side-' + key);
+                if (key === tabKey) {
+                    if (topBtn) topBtn.className = 'dash-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all';
+                    if (sideBtn) sideBtn.className = 'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-magnect-cyan text-magnect-950 shadow-cyan-glow transition-all';
+                } else {
+                    if (topBtn) topBtn.className = 'dash-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-300 hover:text-white transition-all';
+                    if (sideBtn) sideBtn.className = 'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-magnect-800/50 transition-all';
+                }
+            });
+        }
+
+        // IntersectionObserver para carregar animação ao rolar
+        let hasAnimatedDashboardOnScroll = false;
+        const dashboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasAnimatedDashboardOnScroll) {
+                    hasAnimatedDashboardOnScroll = true;
+                    switchDashboardTab('overview');
+                }
+            });
+        }, { threshold: 0.25 });
+
+        const dashSection = document.getElementById('dashboard');
+        if (dashSection) {
+            dashboardObserver.observe(dashSection);
+        }
+
+        // 5. Calculadora de ROI
+        function calculateROI() {
+            const budgetSlider = document.getElementById('budget-slider');
+            const ticketSlider = document.getElementById('ticket-slider');
+            const boostCheckbox = document.getElementById('software-boost');
+            if (!budgetSlider || !ticketSlider) return;
+
+            const budget = parseFloat(budgetSlider.value);
+            const ticket = parseFloat(ticketSlider.value);
+            const hasBoost = boostCheckbox ? boostCheckbox.checked : false;
+
+            document.getElementById('budget-display').textContent = 'R$ ' + budget.toLocaleString('pt-BR');
+            document.getElementById('ticket-display').textContent = 'R$ ' + ticket.toLocaleString('pt-BR');
+
+            const estimatedCPL = Math.max(12, Math.min(50, ticket * 0.035));
+            const baseLeads = Math.round(budget / estimatedCPL);
+            const leads = hasBoost ? Math.round(baseLeads * 1.15) : baseLeads;
+            const baseConvRate = 0.10;
+            const finalConvRate = hasBoost ? baseConvRate * 1.40 : baseConvRate;
+
+            const clients = Math.max(1, Math.round(leads * finalConvRate));
+            const revenue = clients * ticket;
+            const roas = (revenue / budget).toFixed(1);
+
+            document.getElementById('res-leads').textContent = leads.toLocaleString('pt-BR');
+            document.getElementById('res-clients').textContent = clients.toLocaleString('pt-BR');
+            document.getElementById('res-revenue').textContent = 'R$ ' + revenue.toLocaleString('pt-BR');
+            document.getElementById('res-roas').textContent = 'ROAS: ' + roas + 'x';
+
+            const msg = `Olá! Simulei no site da MAGNECT um investimento de R$ ${budget.toLocaleString('pt-BR')} com projeção de R$ ${revenue.toLocaleString('pt-BR')} em faturamento e quero saber como aplicar no meu negócio!`;
+            const roiBtn = document.getElementById('roi-whatsapp-btn');
+            if (roiBtn) {
+                roiBtn.href = `https://wa.me/5521984058626?text=${encodeURIComponent(msg)}`;
+            }
+        }
+
+        // 6. Envio do Formulário para WhatsApp
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const empresa = document.getElementById('empresa').value;
+            const tipoNegocio = document.getElementById('tipo-negocio').value;
+            const servico = document.getElementById('servico').value;
+            const mensagem = document.getElementById('mensagem').value || 'Gostaria de agendar um diagnóstico.';
+
+            const textoWhatsApp = `Olá, equipe MAGNECT! 🚀\n\n*Nome:* ${nome}\n*Empresa:* ${empresa}\n*Perfil:* ${tipoNegocio}\n*Interesse:* ${servico}\n*Objetivo:* ${mensagem}`;
+            const url = `https://wa.me/5521984058626?text=${encodeURIComponent(textoWhatsApp)}`;
+            window.open(url, '_blank');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            calculateROI();
+        });
+    </script>
+</body>
+</html>
